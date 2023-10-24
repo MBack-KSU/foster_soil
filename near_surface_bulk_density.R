@@ -5,7 +5,7 @@
 ##Date updated:7/26/2023
 
 
-density <- read.csv("near_surface_all.csv", stringsAsFactors = T)
+density <- read.csv("C:\\Users\\mikeb\\Documents\\github\\foster_soil\\data\\near_surface_bulk_density.csv", stringsAsFactors = T)
 View(density)
 density$number <- factor(density$number)
 summary(density)
@@ -207,13 +207,18 @@ levels(dspp$number)[levels(dspp$number)=="0"] <- "Non-rip"
 levels(dspp$number)[levels(dspp$number)=="1"] <- "Single-rip"
 levels(dspp$number)[levels(dspp$number)=="2"] <- "Cross-rip"
 levels(dspp$number)[levels(dspp$number)=="x"] <- "Pre-rip"
+View(dspp)
+library(tidyverse)
 
-pre.post.boxplot <- ggplot(dspp, aes(x=number, y=bulk_density)) + 
-  geom_boxplot() + 
+pre.post.boxplot <- dspp %>% arrange(number) %>% 
+  mutate(number = factor(number, levels = c("Pre-rip", "Non-rip", "Single-rip", "Cross-rip"))) %>% 
+  ggplot(aes(x=number, y=bulk_density)) + 
+  geom_boxplot(outlier.shape = 3) + 
   xlab("Sample Type") + 
   ylab("Bulk Density"~(g/cm^3)) + 
   facet_wrap(~site) + 
   geom_point(aes(x=number, y=bulk_density, shape = number)) + 
+  scale_shape_manual(values = c(15, 16, 17, 3)) + 
   theme_classic() + 
   theme(legend.title = element_blank(), 
         legend.position = c(.92, .42),
@@ -232,4 +237,5 @@ prot2$label = c("a", "b", "bc", "b", "bc", "cd", "d", "bc")
 fig5_BD <- pre.post.boxplot + 
   geom_text(data = prot2, aes(y = yloc, label = label), 
             position = position_dodge(width = .75), size = 4)
+  
 ggsave("G:\\.shortcut-targets-by-id\\0B2rU5M8IUMRwQUd0OE0wT05CR0U\\CVNP data\\Manuscript-BulkDensity-Ksat\\Figure5_BulkDensity_ripnumber.jpeg", plot=fig5_BD, height=11, width=9, units=c("cm"), dpi=600)
