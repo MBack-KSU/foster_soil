@@ -267,13 +267,16 @@ levels(dsppksat$rip_number)[levels(dsppksat$rip_number)=="1"] <- "Single-rip"
 levels(dsppksat$rip_number)[levels(dsppksat$rip_number)=="2"] <- "Cross-rip"
 levels(dsppksat$rip_number)[levels(dsppksat$rip_number)=="X"] <- "Pre-rip"
 
-pre.post.boxplot <- ggplot(dsppksat, aes(x=rip_number, y=Ksat.ms)) + 
+pre.post.boxplot <- dsppksat %>% arrange(rip_number) %>% 
+  mutate(rip_number = factor(rip_number, levels = c("Pre-rip", "Non-rip", "Single-rip", "Cross-rip"))) %>% 
+  ggplot(aes(x=rip_number, y=Ksat.ms)) + 
   geom_boxplot() + 
   xlab("Sample Type") + 
   ylab("Ksat" ~ (m/s)) + 
   facet_wrap(~site) + 
   scale_y_log10() + 
   geom_point(data=dsppksat, aes(x=rip_number, y=Ksat.ms, shape = rip_number)) + 
+  scale_shape_manual(values = c(16, 17, 3, 15)) + 
   theme_classic() + 
   theme(legend.title = element_blank(), 
         legend.position = c(.35, .405),
