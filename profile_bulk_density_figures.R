@@ -6,7 +6,7 @@
 
 
 ##load data
-profiles <- read.csv("G:\\.shortcut-targets-by-id\\0B2rU5M8IUMRwQUd0OE0wT05CR0U\\CVNP data\\Manuscript-BulkDensity-Ksat\\profile_bulk_density_graphs_R.csv", stringsAsFactors = T)
+profiles <- read.csv("C:\\Users\\mikeb\\Documents\\github\\foster_soil\\data\\profile_bulk_density.csv", stringsAsFactors = T)
 summary(profiles)
 
 ##instal packages
