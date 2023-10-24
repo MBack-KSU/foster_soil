@@ -68,7 +68,7 @@ a <- ggplot(SQ.ref, aes(x = Depth, y = Bulk_Density)) +
   xlab("Depth" ~(cm)) + 
   ylab(NULL) + 
   ggtitle("SQ") + 
-  geom_hline(yintercept = 1.55, linetype = "dashed", color = "light gray") + 
+  geom_hline(yintercept = 1.4, linetype = "dashed", color = "light gray") + 
   scale_colour_manual(values=SQ.pre.vs.ref.palette)+ 
   theme_pubr() +
   theme(legend.position = "none", plot.title = element_text(size = 10), 
@@ -86,7 +86,7 @@ b <- ggplot(HH.ref, aes(x = Depth, y = Bulk_Density)) +
   xlab(NULL) + 
   ylab(NULL) + 
   ggtitle("HH") + 
-  geom_hline(yintercept = 1.55, linetype = "dashed", color = "light gray") +
+  geom_hline(yintercept = 1.4, linetype = "dashed", color = "light gray") +
   scale_colour_manual(values=HH.palette)+ 
   theme_pubr() +
   theme(legend.position = "none", plot.title = element_text(size = 10), 
@@ -112,7 +112,7 @@ c <- ggplot(DV.rip, aes(x = Depth, y = Bulk_Density)) +
   xlab(NULL) + 
   ylab(NULL) + 
   ggtitle("DV") + 
-  geom_hline(yintercept = 1.55, linetype = "dashed", color = "light gray") +
+  geom_hline(yintercept = 1.4, linetype = "dashed", color = "light gray") +
   scale_colour_manual(values=DV.palette)+ 
   theme_pubr() +
   theme(legend.position = "none", plot.title = element_text(size = 10), 
@@ -134,7 +134,7 @@ d <- ggplot(SQ.flat.non_rip, aes(x = Depth, y = Bulk_Density)) +
   xlab("Depth" ~(cm)) + 
   ylab("Bulk Density" ~(g/cm^3)) + 
   ggtitle("SQ Flat") + 
-  geom_hline(yintercept = 1.55, linetype = "dashed", color = "light gray") + 
+  geom_hline(yintercept = 1.4, linetype = "dashed", color = "light gray") + 
   scale_colour_manual(values=SQ.post.rip.Palette)+ 
   theme_pubr() +
   theme(legend.position = "none", plot.title = element_text(size = 10), 
@@ -154,7 +154,7 @@ e <- ggplot(SQ.slope.non_rip, aes(x = Depth, y = Bulk_Density)) +
   xlab(NULL) + 
   ylab("Bulk Density" ~(g/cm^3)) + 
   ggtitle("SQ Slope (N-S)") + 
-  geom_hline(yintercept = 1.55, linetype = "dashed", color = "light gray") + 
+  geom_hline(yintercept = 1.4, linetype = "dashed", color = "light gray") + 
   scale_colour_manual(values=SQ.post.rip.Palette) + 
   theme_pubr() +
   theme(legend.position = "none", plot.title = element_text(size = 10), 
@@ -182,7 +182,7 @@ f <- ggplot(SQ.slopeEW.non_rip, aes(x = Depth, y = Bulk_Density)) +
   xlab(NULL) + 
   ylab("Bulk Density" ~(g/cm^3)) + 
   ggtitle("SQ Slope (E-W)") + 
-  geom_hline(yintercept = 1.55, linetype = "dashed", color = "light gray") + 
+  geom_hline(yintercept = 1.4, linetype = "dashed", color = "light gray") + 
   scale_colour_manual(values=SQ.post.rip.Palette)+ 
   theme_pubr() +
   theme(legend.position = "none", plot.title = element_text(size = 10), 
