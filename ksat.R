@@ -9,6 +9,7 @@
 #call "Ksat.csv"
 Ksat <- read.csv("C:\\Users\\mikeb\\Documents\\github\\foster_soil\\data\\ksat.csv", stringsAsFactors = T)
 View(Ksat)
+summary(Ksat)
 
 library("nlme")
 library("lme4")
@@ -57,6 +58,7 @@ CRR <- subset(Ksat, site=="CTR")
 ##subset for all mine vs ref
 mine.ref <- subset(Ksat, pre_post=="pre"|pre_post=="no")
 summary(mine.ref)
+View(mine.ref)
 
 
 ##Mixed effects model for all mines vs their respective reference sites, needed log transformation
@@ -162,9 +164,9 @@ plot(Dpre.DR_mod, which = c(1,2))
 
 ##Two sample t tests
 
-t.test(Ksat.ms~ref_mine, data = HH.HR, var.equal = TRUE)
+t.test(log(Ksat.ms)~ref_mine, data = HH.HR, var.equal = TRUE)
 
-t.test(Ksat.ms~ref_mine, data = Dpre.DR, var.equal = TRUE)
+t.test(log(Ksat.ms)~ref_mine, data = Dpre.DR, var.equal = TRUE)
 
 t.test(log(Ksat.ms)~ref_mine, data = SQpre.SQR, var.equal = TRUE)
 
