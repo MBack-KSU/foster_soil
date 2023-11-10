@@ -150,12 +150,13 @@ shapiro.test(resid(SQpre.SQR_logmod))
 plot(SQpre.SQR_logmod, which = c(1,2))
 
 ##Linear model for Hines Hill versus Reference
-HH.HR_mod <- lm(Ksat.ms~ref_mine, data = HH.HR)
+HH.HR_mod <- lm(log(Ksat.ms)~ref_mine, data = HH.HR)
+summary(HH.HR_mod)
 shapiro.test(resid(HH.HR_mod))
 plot(HH.HR_mod, which = c(1,2))
 
 ##Linear model for Dover pre-rip versus Dover Reference
-Dpre.DR_mod <- lm(Ksat.ms~ref_mine, data = Dpre.DR)
+Dpre.DR_mod <- lm(log(Ksat.ms)~ref_mine, data = Dpre.DR)
 shapiro.test(resid(Dpre.DR_mod))
 plot(Dpre.DR_mod, which = c(1,2))
 
@@ -173,9 +174,9 @@ t.test(log(Ksat.ms)~ref_mine, data = SQpre.SQR, var.equal = TRUE)
 
 # Levene's test for unequal variances
 library(car)
-leveneTest(Ksat.ms~ref_mine, data = HH.HR)
-leveneTest(Ksat.ms~ref_mine, data = Dpre.DR)
-leveneTest(Ksat.ms~ref_mine, data = SQpre.SQR)
+leveneTest(log(Ksat.ms)~ref_mine, data = HH.HR)
+leveneTest(log(Ksat.ms)~ref_mine, data = Dpre.DR)
+leveneTest(log(Ksat.ms)~ref_mine, data = SQpre.SQR)
 
 ##ANOVA model for CT, RR, and CRR
 CT.RR.CRR_ANOVA <- aov(log(Ksat.ms)~site, data = CT.RR.CRR)
