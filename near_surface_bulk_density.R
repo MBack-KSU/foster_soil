@@ -208,6 +208,16 @@ levels(dspp$number)[levels(dspp$number)=="1"] <- "Single-rip"
 levels(dspp$number)[levels(dspp$number)=="2"] <- "Cross-rip"
 levels(dspp$number)[levels(dspp$number)=="x"] <- "Pre-rip"
 View(dspp)
+
+dv_dspp <- subset(dspp, site=="DV")
+with(dv_dspp, tapply(bulk_density, number, mean))
+with(dv_dspp, tapply(bulk_density, number, sd))
+
+sq_dspp <- subset(dspp, site=="SQ")
+with(sq_dspp, tapply(bulk_density, number, mean))
+with(sq_dspp, tapply(bulk_density, number, sd))
+
+
 library(tidyverse)
 
 pre.post.boxplot <- dspp %>% arrange(number) %>% 
