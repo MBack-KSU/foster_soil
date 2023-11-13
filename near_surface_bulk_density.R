@@ -189,6 +189,7 @@ anova(pre.post.LMER)
 summary(pre.post.LMER)
 emm2=emmeans(pre.post.LMER, ~number*site)
 pairs(emm2, adjust = "holm")
+df <- data.frame(pairs(emm2, adjust = "holm"))
 
 ##test for dover outlier
 hist(DV.SQ.PrePost$bulk_density)

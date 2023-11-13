@@ -269,6 +269,15 @@ levels(dsppksat$rip_number)[levels(dsppksat$rip_number)=="0"] <- "Non-rip"
 levels(dsppksat$rip_number)[levels(dsppksat$rip_number)=="1"] <- "Single-rip"
 levels(dsppksat$rip_number)[levels(dsppksat$rip_number)=="2"] <- "Cross-rip"
 levels(dsppksat$rip_number)[levels(dsppksat$rip_number)=="X"] <- "Pre-rip"
+View(dsppksat)
+
+dv_dsppksat <- subset(dsppksat, site=="DV")
+with(dv_dsppksat, tapply(Ksat.ms, rip_number, mean))
+with(dv_dsppksat, tapply(Ksat.ms, rip_number, sd))
+
+sq_dsppksat <- subset(dsppksat, site=="SQ")
+with(sq_dsppksat, tapply(Ksat.ms, rip_number, mean))
+with(sq_dsppksat, tapply(Ksat.ms, rip_number, sd))
 
 pre.post.boxplot <- dsppksat %>% arrange(rip_number) %>% 
   mutate(rip_number = factor(rip_number, levels = c("Pre-rip", "Non-rip", "Single-rip", "Cross-rip"))) %>% 
