@@ -85,6 +85,7 @@ anova(mine.ref.sites)
 emm3=emmeans(mine.ref.sites, ~site)
 pairs(emm3, adjust = "holm")#post hoc test used for significance letters on figure
 
+
 ##find mean for all mine sites combined and references combined
 with(mine.ref, tapply(Ksat.ms, ref_mine, mean))
 with(mine.ref, tapply(Ksat.ms, ref_mine, sd))
@@ -258,6 +259,8 @@ anova(pre.post.LMER)
 summary(pre.post.LMER)
 emm2=emmeans(pre.post.LMER, ~rip_number*site)
 pairs(emm2, adjust = "holm")
+df <- data.frame(pairs(emm2, adjust = "holm"))
+write.csv(df, "C:\\Users\\mikeb\\Documents\\df.csv", row.names=FALSE)
 
 # Levene's test for unequal variances
 leveneTest(log(Ksat.ms)~rip_number*site, data = DV.SQ.PrePost)
