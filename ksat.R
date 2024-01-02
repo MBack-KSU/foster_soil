@@ -11,6 +11,7 @@ Ksat <- read.csv("C:\\Users\\mikeb\\Documents\\github\\foster_soil\\data\\ksat.c
 View(Ksat)
 summary(Ksat)
 
+library(tidyverse)
 library("nlme")
 library("lme4")
 library("lmerTest")
@@ -178,6 +179,9 @@ library(car)
 leveneTest(log(Ksat.ms)~ref_mine, data = HH.HR)
 leveneTest(log(Ksat.ms)~ref_mine, data = Dpre.DR)
 leveneTest(log(Ksat.ms)~ref_mine, data = SQpre.SQR)
+leveneTest(log(Ksat.ms)~ref_mine, data = CT.CRR)
+leveneTest(log(Ksat.ms)~ref_mine, data = RR.CRR)
+leveneTest(log(Ksat.ms)~ref_mine, data = CT.RR.CRR)
 
 ##ANOVA model for CT, RR, and CRR
 CT.RR.CRR_ANOVA <- aov(log(Ksat.ms)~site, data = CT.RR.CRR)
@@ -185,6 +189,15 @@ shapiro.test(resid(CT.RR.CRR_ANOVA))
 plot(CT.RR.CRR_ANOVA, which = c(1,2))
 summary(CT.RR.CRR_ANOVA)
 TukeyHSD(CT.RR.CRR_ANOVA)
+
+##CT, RR, and CRR test without the 1.47 x 10 -8 values
+CT.RR.CRR_no_zeros <- CT.RR.CRR %>%  filter(!row_number() %in% c(1, 2, 5, 8, 12))
+View(CT.RR.CRR_no_zeros)
+CT.RR.CRR.2_ANOVA <- aov(log(Ksat.ms)~site, data = CT.RR.CRR_no_zeros)
+shapiro.test(resid(CT.RR.CRR.2_ANOVA))
+plot(CT.RR.CRR.2_ANOVA, which = c(1,2))
+summary(CT.RR.CRR.2_ANOVA)
+TukeyHSD(CT.RR.CRR.2_ANOVA)
 
 
 ##log trans used above seems to fit better than the asinsqrt she used here below  -mike
