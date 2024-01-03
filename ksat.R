@@ -182,6 +182,7 @@ leveneTest(log(Ksat.ms)~ref_mine, data = SQpre.SQR)
 leveneTest(log(Ksat.ms)~ref_mine, data = CT.CRR)
 leveneTest(log(Ksat.ms)~ref_mine, data = RR.CRR)
 leveneTest(log(Ksat.ms)~ref_mine, data = CT.RR.CRR)
+leveneTest(log(Ksat.ms)~ref_mine, data = mine.ref)
 
 ##ANOVA model for CT, RR, and CRR
 CT.RR.CRR_ANOVA <- aov(log(Ksat.ms)~site, data = CT.RR.CRR)
