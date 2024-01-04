@@ -149,6 +149,8 @@ leveneTest(bulk_density~site, data = CT.RR.CTR)
 #calculating variances for CT/RR since they are significantly different
 aggregate(CT.RR.CTR$bulk_density, by=list(CT.RR.CTR$site), FUN=var)
 
+leveneTest(bulk_density~type, data=mine.ref)
+
 
 ##ANOVA for CT.RR.CRR
 CTRRCTR_ANOVA <- aov(bulk_density~site, data = CT.RR.CTR)
